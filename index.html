@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<script>
+navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia
+window.AudioContext = window.AudioContext || window.webkitAudioContext
+
+function gotStream(stream) {
+    var src = URL.createObjectURL(stream)
+    var audioContext = new AudioContext()
+    var mediaStreamSource = audioContext.createMediaStreamSource(stream)
+    mediaStreamSource.connect(audioContext.destination)
+}
+
+navigator.getUserMedia({audio:true}, gotStream)
+</script>
+</head><body> </body>
+</html>
